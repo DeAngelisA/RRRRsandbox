@@ -6,4 +6,3 @@ Sandbox environment for the RRRR workshop.
 Really **cool**!!
 
 - list 1
-- list 2
