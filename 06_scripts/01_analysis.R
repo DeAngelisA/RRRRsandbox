@@ -1,8 +1,16 @@
-# Messy Data Project
-setwd("C:/Users/andre/Dropbox/Lavoro/Teaching/1-templates-lessons/messy-tidy-projects/Messy Data Project")
-load("DSP_original.Rdata")
+# "Tidier" Project by Michael
+# 27/05/2020
 
-DSP_rec <- DSP_Dataset_v1 %>% select(country_name, country_text_id, country_id, year, v2smgovdom, v2smregcon, v2smhargr_0, v2smpolsoc) %>% mutate(country_name=as.factor(country_name),v2smgovdom=v2smgovdom*(-1),v2smpolsoc=v2smpolsoc*(-1))
+# Load data
+load(here::here("01_data","DSP_original.Rdata"))
+
+DSP_rec <- DSP_Dataset_v1 %>% 
+  select(country_name, country_text_id, country_id, year, 
+         v2smgovdom, v2smregcon, v2smhargr_0, v2smpolsoc)
+  
+# Save recoded dataset
+save(DSP_rec, file = here::here("01_data","DSP_recoded.Rdata"))
+
 fig1 <- ggplot(DSP_rec)+geom_histogram(mapping=aes(x=v2smgovdom), binwidth=0.2)+labs(title="Histogram of government spreading of fakes domestically",x="",y="Count")+theme_bw()
 ggsave(plot=fig1,filename="Fig1.tiff",device="tiff", dpi=600, compression="lzw",height=5, width=5, units="in")
 
